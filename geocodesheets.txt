@@ -1,0 +1,14 @@
+function onEdit(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var fr = ss.getSheetByName("Form Responses");
+  var lastRowValues = fr.getRange(fr.getLastRow(), 1, 1, fr.getLastColumn()).getValues();
+  var target = lastRowValues[0][3];
+  var response = Maps.newGeocoder().geocode(target);
+  for (var i = 0; i < response.results.length; i++) {
+    var result = response.results[i];
+               }
+  var geocode = (result.geometry.location.lat+ ", " +result.geometry.location.lng);
+  var lastrow = ss.getLastRow();
+  ss.getRange('T'+lastrow).setValue(geocode);
+
+}
